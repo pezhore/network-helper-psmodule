@@ -10,6 +10,7 @@ Function ConvertTo-DottedDecimalIP
 #>
 
     [CmdletBinding()]
+    [OutputType([string])]
     Param(
           [Parameter(Mandatory = $True, Position = 0, ValueFromPipeline = $True)]
           [String]$IPAddress
