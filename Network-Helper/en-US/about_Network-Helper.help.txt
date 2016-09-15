@@ -1,0 +1,16 @@
+PSTOPIC
+    about_network_helper
+
+SHORT DESCRIPTION
+    Network-Helper provides basic calculations related to subnet masks
+
+LONG DESCRIPTION
+    Network-Helper provides the ability to convert a dotted subnet mask to cidr and vice versa. Future functionality may be added at a future date.
+
+
+DETAILED DESCRIPTION
+    This is a rudimentary module that provides two simple subnet calculations
+
+    ConvertTo-MaskLength will take in a dotted subnetmask and return the cidr notation.
+
+    ConvertTo-SubnetMask will take in a cidr notation and convert it to dotted subnet mask notation.
