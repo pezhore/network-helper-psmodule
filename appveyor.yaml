@@ -3,6 +3,8 @@
 # Allow WMF5 (i.e. PowerShellGallery functionality)
 os: Unstable
 
+build: off
+
 # Skip on updates to the readme.
 # We can force this by adding [skip ci] or [ci skip] anywhere in commit message
 skip_commits:
@@ -10,8 +12,6 @@ skip_commits:
 
 install:
   - cinst pester -y
-
-build: off
 
 test_script:
 # Test with native PS version
