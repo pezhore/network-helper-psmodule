@@ -5,7 +5,7 @@ if($env:APPVEYOR_REPO_BRANCH -and $env:APPVEYOR_REPO_BRANCH -notlike "master")
 }
 
 $PSVersion = $PSVersionTable.PSVersion.Major
-Import-Module $PSScriptRoot\..\MC-UCS-RO -Force
+Import-Module $PSScriptRoot\..\Network-Helper\Network-Helper.psd1 -Force
 
 #Integration Testing for SubnetMask conversion
 Describe "ConvertTo-SubnetMask PS$PSVersion Integrations tests" {
