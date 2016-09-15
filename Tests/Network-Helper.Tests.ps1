@@ -14,7 +14,7 @@ Describe "ConvertTo-SubnetMask PS$PSVersion Integrations tests" {
 
         Set-StrictMode -Version latest
 
-        It 'should get valid data' {
+        It 'should return valid SubnetMask' {
             $Output = ConvertTo-SubnetMask -MaskLength 24
             $Output -eq "255.255.255.0" | Should be $True
         }
@@ -28,7 +28,7 @@ Describe "ConvertTo-MaskLength PS$PSVersion Integrations tests" {
 
         Set-StrictMode -Version latest
 
-        It 'should get valid data' {
+        It 'should return valid mask length' {
             $Output = ConvertTo-MaskLength -SubnetMask '255.255.255.0'
             $Output -eq "24" | Should be $True
         }

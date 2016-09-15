@@ -10,7 +10,7 @@ Function ConvertTo-MaskLength
     A subnet mask to convert into length
 #>
 
-    [CmdLetBinding()]
+    [CmdletBinding()]
     Param(
           [Parameter(Mandatory = $True, Position = 0, ValueFromPipeline = $True)]
           [Alias("Mask")]
@@ -20,7 +20,6 @@ Function ConvertTo-MaskLength
     PROCESS
     {
         $Bits = "$( $SubnetMask.GetAddressBytes() | ForEach-Object { [Convert]::ToString($_, 2) } )" -Replace '[\s0]'
-
         Return $Bits.Length
     }
 }

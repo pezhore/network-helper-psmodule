@@ -10,15 +10,15 @@ Function ConvertTo-SubnetMask
     .Parameter MaskLength
     The number of bits which must be masked.
 #>
- 
-    [CmdLetBinding()]
+
+    [CmdletBinding()]
     Param(
           [Parameter(Mandatory = $True, Position = 0, ValueFromPipeline = $True)]
           [Alias("Length")]
           [ValidateRange(0, 32)]
           $MaskLength
          )
-    BEGIN{} 
+    BEGIN{}
     PROCESS
     {
         Return ConvertTo-DottedDecimalIP ([Convert]::ToUInt32($(("1" * $MaskLength).PadRight(32, "0")), 2))
