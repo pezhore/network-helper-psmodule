@@ -20,6 +20,6 @@ Function ConvertTo-MaskLength
     PROCESS
     {
         $Bits = "$( $SubnetMask.GetAddressBytes() | ForEach-Object { [Convert]::ToString($_, 2) } )" -Replace '[\s0]'
-        Return $Bits.Length+1
+        Return $Bits.Length
     }
 }
