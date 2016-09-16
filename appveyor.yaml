@@ -1,22 +1,19 @@
 # See http://www.appveyor.com/docs/appveyor-yml for many more options
 
-# Allow WMF5 (i.e. PowerShellGallery functionality)
-os: Unstable
-
-build: off
-
 # Skip on updates to the readme.
 # We can force this by adding [skip ci] or [ci skip] anywhere in commit message
 skip_commits:
   message: /updated readme.*/
 
 install:
-  - cinst pester -y
+  - cinst pester
+
+build: false
 
 test_script:
 # Test with native PS version
-#  - ps: .\Tests\appveyor.pester.ps1 -Test -Finalize
-test_script:
-  - ps: $res = Invoke-Pester -Path ".\Tests" -OutputFormat NUnitXml -OutputFile TestsResults.xml -PassThru
-  - ps: (New-Object 'System.Net.WebClient').UploadFile("https://ci.appveyor.com/api/testresults/nunit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path .\TestsResults.xml))
-  - ps: if ($res.FailedCount -gt 0) { throw "$($res.FailedCount) tests failed."}
+  - ps: . .\Tests\appveyor.pester.ps1
+# Test with PS version 2
+  - ps: powershell.exe -version 2.0 -executionpolicy bypass -noprofile -file .\Tests\appveyor.pester.ps1
+# Finalize pass - collect and upload results
+  - ps: . .\Tests\appveyor.pester.ps1 -Finalize
