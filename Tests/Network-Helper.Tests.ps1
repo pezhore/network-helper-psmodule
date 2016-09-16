@@ -7,6 +7,17 @@ $ModuleName = "Network-Helper"
 $PSVersion = $PSVersionTable.PSVersion.Major
 Import-Module $PSScriptRoot\..\$ModuleName\$ModuleName.psm1 -Force
 
+# Purposely fail a test.
+Describe "This will fail" {
+    Context 'Strict mode' {
+        Set-StrictMode -Version latest
+
+        It 'Should fail' {
+            $false | Should be $true
+        }
+    }
+}
+
 #Integration Testing for SubnetMask conversion
 Describe "ConvertTo-SubnetMask PS$PSVersion Integrations tests" {
 
