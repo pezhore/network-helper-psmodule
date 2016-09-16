@@ -1,8 +1,6 @@
 # See http://www.appveyor.com/docs/appveyor-yml for many more options
 environment:
   access_token:
-    secure: environment:
-  my_variable:
     secure: r4AOJ+2A8L6Xa9RaE1hXIiRTz9IuDxl3pxFvXjFsP0Me2qDE64vXdWHiGxF2jE3Q
 
 # Skip on updates to the readme.
