@@ -28,7 +28,7 @@ param(
     {
         "`n`tSTATUS: Testing with PowerShell $PSVersion`n"
 
-        Import-Module Pester -force
+        Import-Module Pester
 
         Invoke-Pester @Verbose -Path "$ProjectRoot\Tests" -OutputFormat NUnitXml -OutputFile "$ProjectRoot\$TestFile" -PassThru |
             Export-Clixml -Path "$ProjectRoot\PesterResults_PS$PSVersion`_$Timestamp.xml"
@@ -43,7 +43,7 @@ param(
     If($Finalize)
     {
         #Show status...
-            $AllFiles = Get-ChildItem -Path $ProjectRoot\PesterResults*.xml | Select-Object -ExpandProperty FullName
+            $AllFiles = Get-ChildItem -Path $ProjectRoot\PesterResults*.xml | Select -ExpandProperty FullName
             "`n`tSTATUS: Finalizing results`n"
             "COLLATING FILES:`n$($AllFiles | Out-String)"
 
@@ -51,15 +51,15 @@ param(
             $Results = @( Get-ChildItem -Path "$ProjectRoot\PesterResults_PS*.xml" | Import-Clixml )
 
             $FailedCount = $Results |
-                Select-Object -ExpandProperty FailedCount |
+                Select -ExpandProperty FailedCount |
                 Measure-Object -Sum |
-                Select-Object -ExpandProperty Sum
+                Select -ExpandProperty Sum
 
             if ($FailedCount -gt 0) {
 
                 $FailedItems = $Results |
-                    Select-Object -ExpandProperty TestResult |
-                    Where-Object {$_.Passed -notlike $True}
+                    Select -ExpandProperty TestResult |
+                    Where {$_.Passed -notlike $True}
 
                 "FAILED TESTS SUMMARY:`n"
                 $FailedItems | ForEach-Object {
@@ -71,7 +71,7 @@ param(
                         Result = $Item.Result
                     }
                 } |
-                    Sort-Object Describe, Context, Name, Result |
+                    Sort Describe, Context, Name, Result |
                     Format-List
 
                 throw "$FailedCount tests failed."
