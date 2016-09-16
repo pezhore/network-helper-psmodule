@@ -5,4 +5,3 @@ This is a simple PowerShell module that performs basic Network calculations.
 
 Current functionality will be updated later.
 
-Woo!
