@@ -18,9 +18,12 @@ Function ConvertTo-SubnetMask
           [ValidateRange(0, 32)]
           $MaskLength
          )
+
     BEGIN{}
+
     PROCESS
     {
         Return ConvertTo-DottedDecimalIP ([Convert]::ToUInt32($(("1" * $MaskLength).PadRight(32, "0")), 2))
     }
+
 }
