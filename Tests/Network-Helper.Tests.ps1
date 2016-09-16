@@ -46,3 +46,13 @@ Describe "Should pass Script Analyzer PS$PSVersion Integrations tests" {
         }
     }
 }
+
+Describe "This will fail" {
+    Context 'Strict mode' {
+        Set-StrictMode -Version latest
+
+        It 'Should fail' {
+            $false | Should be $true
+        }
+    }
+}
