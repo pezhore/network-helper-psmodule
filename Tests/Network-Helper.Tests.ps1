@@ -30,7 +30,7 @@ Describe "ConvertTo-MaskLength PS$PSVersion Integrations tests" {
 
         It 'should return valid mask length' {
             $Output = ConvertTo-MaskLength -SubnetMask '255.255.255.0'
-            $Output -eq "23" | Should be $True
+            $Output -eq "24" | Should be $True
         }
     }
 }
